@@ -5,12 +5,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <style type="text/css">
+        .color-red {
+            color: green;
+            text-align: center;
+            border: 1px black solid;
+        }
+
+        .is-loading {
+            background-color: red;
+        }
+    </style>
 </head>
 
 <body>
     <div id="root">
 
-        1.v-model
+        <!-- 1.v-model
 
         <input type="text" id="input" v-model="message">
 
@@ -30,15 +42,63 @@
         <ul>
             <li v-for="name in names" v-text="name">
             </li>
-        </ul>
+        </ul> -->
 
         4.event listen
-
+        ## withid
         <input id="name" type="text">
 
         <button id="addname">Add Name</button>
 
+        ## v-on:click -- v-on:keyUp
 
+        <input id="name" type="text" v-model="newname" v-on:keyUP="">
+
+        <button v-on:click="addname">Add Name</button> v-on or @
+        <br>
+        ## v-bind
+        <button v-bind:title="title">Hover Me </button> v-bind or :
+
+        <br>
+
+
+        ### className
+        <h1 :class="className">Hello Vue</h1>
+
+        <button :class="{'is-loading':isLoading}" @click="toggleClass"> Toggle Me</button>
+
+        <br>
+
+
+        ## v-text
+
+        <h2 v-text="new Date()"></h2>
+        <h1>{{message}}</h1>
+        <h1>
+            reverse: {{message.split('').reverse('').join('')}}
+        </h1>
+
+        <h2>
+            computed reverse: {{reverseMessage}}
+        </h2>
+
+        <h1>All Task</h1>
+
+        <ul>
+            <li v-for="task in tasks" v-text="task.desc"></li>
+        </ul>
+
+        <h3 :class="className">Only Completed task</h3>
+
+        <ul>
+            <li v-for="task in tasks" v-if="task.completed" v-text="task.desc"></li>
+        </ul>
+
+        <h3 :class="className">Only InCompleted task</h3>
+
+        <ul>
+            <li v-for="task in incompletdtask" v-text="task.desc"></li>
+        </ul>
 
     </div>
 
@@ -61,21 +121,78 @@
             // data: {
             //     name: "jas"
             // }
+            //#####
+            // data: {
+            //     names: ["jas", "joe", "jai", "jack"]
+            // },
+
+            // mounted() {
+            //     // alert("ready");
+            //     document.querySelector('#addname').addEventListener('click', () => {
+
+            //         let name = document.querySelector('#name');
+
+            //         app.names.push(name.value);
+            //         name.value = "";
+
+            //     })
+            // },
+
+            //####
+            // data: {
+            //     newname: "",
+            //     names: ["jas", "joe", "jai", "jack"]
+            // },
 
             data: {
-                names: ["jas", "joe", "jai", "jack"]
+
+                title: "title from Js",
+                className: "color-red",
+                isLoading: false,
+                message: "hello vue js",
+                computedmessage: "computed message",
+
+                tasks: [
+
+                    { desc: "assignment", completed: true },
+                    { desc: "cleaning", completed: false },
+                    { desc: "clear inbox", completed: true },
+                    { desc: "make dinner", completed: false },
+                    { desc: "finish vue basic", completed: false }
+
+                ]
+
+            },
+            //### methods
+
+            methods: {
+                addname() {
+                    this.names.push(this.newname)
+                    this.newname = '';
+                },
+                toggleClass() {
+                    this.isLoading = true;
+                }
+
+            },
+            computed: {
+                reverseMessage() {
+                    return this.computedmessage.split('').reverse().join('');
+                },
+                incompletdtask() {
+                    return this.tasks.filter(task => !task.completed)
+                }
             }
-        })
+            //###
 
 
-        document.querySelector('#addname').addEventListener('click', () => {
-
-            let name = document.querySelector('#name');
-
-            app.names.push(name.value);
-            name.value = "";
 
         })
+
+
+
+
+
     </script>
 </body>
 
