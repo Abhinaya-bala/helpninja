@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="root">
+
+        1.v-model
+
+        <input type="text" id="input" v-model="message">
+
+        <p>the value :{{message}}</p>
+
+        {{name}} -->
+
+        2.v-for
+        <ul>
+            <li v-for="name in names">
+                {{name}}
+            </li>
+        </ul>
+
+        3.v-text
+
+        <ul>
+            <li v-for="name in names" v-text="name">
+            </li>
+        </ul>
+
+        4.event listen
+
+        <input id="name" type="text">
+
+        <button id="addname">Add Name</button>
+
+
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+
+    <script>
+        // let data = {
+        //     message: 'Hello vue !!!'
+        // };
+        //  document.querySelector("input").value = data.message;
+
+        var app = new Vue({
+            el: "#root",
+            //data: data
+
+            // data: {
+            //     message: "Hello vue"
+            // }
+
+            // data: {
+            //     name: "jas"
+            // }
+
+            data: {
+                names: ["jas", "joe", "jai", "jack"]
+            }
+        })
+
+
+        document.querySelector('#addname').addEventListener('click', () => {
+
+            let name = document.querySelector('#name');
+
+            app.names.push(name.value);
+            name.value = "";
+
+        })
+    </script>
+</body>
+
+</html>
