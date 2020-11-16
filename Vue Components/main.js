@@ -162,6 +162,34 @@ Vue.component('tab', {
     }
 })
 
+Vue.component('coupon',{
+
+    props:['code'],
+
+    template:`
+    
+    <input type="text" :value="code" @input="updateCode($event.target.value)" ref="input">
+    
+    `,
+
+    data(){
+return{
+    invalids:['ALLFREE','SOMECODE']
+}
+    },
+
+    methods:{
+        updateCode(code){
+            if(this.invalids.includes(code)){
+                alert('this coupon is no longer valid');
+                this.$refs.input.value=code='';
+                return;
+            }
+        this.$emit('input', code);
+}
+    }
+});
+
 
 new Vue({
     el: '#root',
