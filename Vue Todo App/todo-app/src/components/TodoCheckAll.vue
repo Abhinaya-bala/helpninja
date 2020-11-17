@@ -8,15 +8,15 @@
 <script>
 export default {
     name:'todo-check-all',
-    props:{
-        checkRemain:{
-            type:Boolean,
-            required:true,
+    computed:{
+        checkRemain(){
+            return this.$store.getters.checkRemain
         }
     },
     methods:{
     allChecked(){
-       eventBus.$emit('checkAllChanged',this.checkRemain) 
+        this.$store.dispatch('checkAll',event.target.checked)
+         
     }    
     }
 

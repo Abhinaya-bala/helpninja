@@ -8,11 +8,11 @@
 <script>
 export default {
     name:'todo-remaining',
-    props:{
-        remain:{
-            type:Number,
-            required:true,
+    computed:{
+        remain(){
+            return this.$store.getters.remain
         }
     }
+   
 }
 </script>
