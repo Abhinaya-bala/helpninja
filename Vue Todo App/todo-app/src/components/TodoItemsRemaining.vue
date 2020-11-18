@@ -1,6 +1,6 @@
 <template>
 
-<div>{{ remain }} items left</div>
+<div class="text-red-600 font-medium">{{ remain }} Items left</div>
 
 </template>
 

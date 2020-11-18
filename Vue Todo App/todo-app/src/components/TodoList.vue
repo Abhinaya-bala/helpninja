@@ -1,23 +1,32 @@
 <template>
-  <div>
-    Todo List Goes Here
-    <input type="text" class="todo-input" placeholder="What needs to be done" v-model="newTodo" @keyup.enter="addTodo">
-    <todo-item v-for="todo in todosFiltered"
+  <div class="bg-white rounded shadow p-6 m-6 w-full lg:w-3/4 lg:max-w-lg mx-auto">
+    <header>
+      <h1 class="text-purple-700"> <b>Task List </b></h1>
+    </header>
+   <div class="flex mt-4 mb-3">
+      <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 mr-4 text-grey-darker" placeholder="Add Task" v-model="newTodo">
+      <button class="flex-no-shrink p-2 border-1 rounded bg-purple-500 text-white border-purple hover:text-white hover:bg-teal" @click="addTodo">ADD</button>
+    </div>
+    <div> 
+
+<todo-item v-for="todo in todosFiltered"
      :key="todo.id" :todo="todo"
      :checkAll="!checkRemain">
      </todo-item>
 
-     <div class="extra-container">
-      <todo-check-all></todo-check-all>
-      <todo-items-remaining></todo-items-remaining>
-    </div>
+   </div>
 
-    <div class="extra-container">
-      <todo-filtered></todo-filtered>
-<todo-clear-completed></todo-clear-completed>
+      <div class="flex space-x-4">
+       <todo-check-all></todo-check-all>
+      <todo-items-remaining></todo-items-remaining>
+     </div>
+    
      
 
-    </div>
+    <div class="flex space-x-8">
+      <todo-filtered></todo-filtered>
+      <todo-clear-completed></todo-clear-completed>
+     </div>
  </div>
 </template>
 
@@ -81,6 +90,6 @@ export default {
 <style>
 .completed {
     text-decoration: line-through;
-    color:green;
+    color:green !important;
   }
 </style>
